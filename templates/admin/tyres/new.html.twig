@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tyres{% endblock %}
+
+{% block body %}
+    <h1>Create new Tyres</h1>
+
+    {{ include('admin/tyres/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_tyres_index') }}">back to list</a>
+{% endblock %}

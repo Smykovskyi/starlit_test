@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AutoGlass{% endblock %}
+
+{% block body %}
+    <h1>AutoGlass</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auto_glass.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ auto_glass.description }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ auto_glass.type }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ auto_glass.number }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_auto_glass_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_auto_glass_edit', {'id': auto_glass.id}) }}">edit</a>
+
+    {{ include('admin/auto_glass/_delete_form.html.twig') }}
+{% endblock %}

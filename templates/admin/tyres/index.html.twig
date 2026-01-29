@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tyres index{% endblock %}
+
+{% block body %}
+    <h1>Tyres index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Width</th>
+                <th>Diameter</th>
+                <th>Seasonality</th>
+                <th>Profile</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tyre in tyres %}
+            <tr>
+                <td>{{ tyre.id }}</td>
+                <td>{{ tyre.width }}</td>
+                <td>{{ tyre.diameter }}</td>
+                <td>{{ tyre.seasonality }}</td>
+                <td>{{ tyre.profile }}</td>
+                <td>
+                    <a href="{{ path('app_admin_tyres_show', {'id': tyre.id}) }}">show</a>
+                    <a href="{{ path('app_admin_tyres_edit', {'id': tyre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_tyres_new') }}">Create new</a>
+{% endblock %}

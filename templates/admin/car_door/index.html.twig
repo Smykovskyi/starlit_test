@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CarDoor index{% endblock %}
+
+{% block body %}
+    <h1>CarDoor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car_door in car_doors %}
+            <tr>
+                <td>{{ car_door.id }}</td>
+                <td>{{ car_door.model }}</td>
+                <td>{{ car_door.color }}</td>
+                <td>
+                    <a href="{{ path('app_admin_car_door_show', {'id': car_door.id}) }}">show</a>
+                    <a href="{{ path('app_admin_car_door_edit', {'id': car_door.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_car_door_new') }}">Create new</a>
+{% endblock %}
