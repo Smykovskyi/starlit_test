@@ -33,12 +33,11 @@
 
             <!-- App header actions start -->
             <div class="header-actions ms-auto">
-                <div class="dropdown ms-2">
-                    <a id="userSettings" class="dropdown-toggle d-flex align-items-center py-1" href="#!" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="ms-2 text-truncate d-lg-block d-none">User name {{ app.user }}</span>
-                    </a>
-                </div>
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+                    </div>
+                {% endif %}
             </div>
             <!-- App header actions end -->
 
@@ -70,8 +69,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#!" class="disabled">
-                                <span class="menu-text">Disabled Link</span>
+                            <a href="{{ path('app_admin_user_index') }}">
+                                <span class="menu-text">User</span>
                             </a>
                         </li>
                     </ul>
@@ -93,7 +92,6 @@
                             <i class="ri-home-3-line lh-1"></i>
                             <a href="{{ asset('admin') }}">Admin</a>
                         </li>
-                        <li class="breadcrumb-item text-secondary" aria-current="page">Default Layout</li>
                     </ol>
                     <!-- Breadcrumb end -->
 
@@ -152,44 +150,5 @@
 
     </div>
 {% endblock %}
-
-<div class="auth-wrapper">
-
-    <!-- Form starts -->
-    <form action="index.html">
-
-        <div class="auth-box">
-            <h4 class="mb-4">Login to Starlit Group</h4>
-
-            <div class="mb-3">
-                <label class="form-label" for="email">Your email <span class="text-danger">*</span></label>
-                <input type="text" id="email" class="form-control" placeholder="Enter your email">
-            </div>
-
-            <div class="mb-2">
-                <label class="form-label" for="pwd">Your password <span class="text-danger">*</span></label>
-                <div class="input-group">
-                    <input type="password" id="pwd" class="form-control" placeholder="Enter password">
-                    <button class="btn btn-light" type="button">
-                        <i class="ri-eye-off-line"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-end mb-3">
-                <a href="forgot-password.html" class="text-decoration-underline">Forgot Password?</a>
-            </div>
-
-            <div class="mb-3 d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a href="signup.html" class="btn btn-outline-primary">Not Registered? Signup</a>
-            </div>
-
-        </div>
-
-    </form>
-    <!-- Form ends -->
-
-</div>
 </body>
 </html>

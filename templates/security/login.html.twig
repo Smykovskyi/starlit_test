@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+        </div>
+    {% endif %}
+
+
+    <div class="auth-wrapper">
+
+        <!-- Form starts -->
+        <form method="post">
+            <div class="auth-box">
+
+                <h4 class="mb-4">Login to Starlit Group</h4>
+
+                <div class="mb-3">
+                    <label class="form-label" for="email">Your email <span class="text-danger">*</span></label>
+                    <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" placeholder="Enter your email"  autofocus>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label" for="password">Your password <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="password" name="_password" id="password" class="form-control form-label" autocomplete="current-password" placeholder="Enter password" >
+                        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                    </div>
+                </div>
+
+                {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <input type="checkbox" name="_remember_me" id="_remember_me">
+                    <label for="_remember_me">Remember me</label>
+                </div>
+                #}
+
+                <div class="mb-3 d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+
+            </div>
+
+        </form>
+        <!-- Form ends -->
+
+    </div>
+{% endblock %}
