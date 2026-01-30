@@ -6,8 +6,10 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UserType extends AbstractType
 {
@@ -16,6 +18,9 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => false,
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
@@ -29,7 +34,12 @@ class UserType extends AbstractType
                 'label' => 'User Roles',
                 'required' => false,
             ])
-            ->add('password')
+            ->add('password', PasswordType::class, [
+                'required' => false,
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
         ;
     }
 
