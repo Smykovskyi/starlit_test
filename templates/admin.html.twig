@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}Admin panel of Test task for Starlit Group{% endblock %}
+    </title>
+
+    {% block stylesheets %}
+        <!-- Main css -->
+        <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <!-- Page wrapper start -->
+    <div class="page-wrapper">
+
+        <!-- App header starts -->
+        <div class="app-header d-flex align-items-center">
+
+            <!-- App brand starts -->
+            <div class="app-brand py-2 ms-3">
+                <h1>Admin Starlit Group</h1>
+            </div>
+            <!-- App brand ends -->
+
+            <!-- App header actions start -->
+            <div class="header-actions ms-auto">
+                <div class="dropdown ms-2">
+                    <a id="userSettings" class="dropdown-toggle d-flex align-items-center py-1" href="#!" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="ms-2 text-truncate d-lg-block d-none">User name {{ app.user }}</span>
+                    </a>
+                </div>
+            </div>
+            <!-- App header actions end -->
+
+        </div>
+        <!-- App header ends -->
+
+        <!-- Main container start -->
+        <div class="main-container">
+
+            <!-- Sidebar wrapper start -->
+            <nav id="sidebar" class="sidebar-wrapper">
+
+                <!-- Sidebar menu starts -->
+                <div class="sidebarMenuScroll">
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="{{ path('app_admin_tyres_index') }}">
+                                <span class="menu-text">Tyres</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_admin_car_door_index') }}">
+                                <span class="menu-text">Car Door</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_admin_auto_glass_index') }}">
+                                <span class="menu-text">Auto Glass</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!" class="disabled">
+                                <span class="menu-text">Disabled Link</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sidebar menu ends -->
+
+            </nav>
+            <!-- Sidebar wrapper end -->
+
+            <!-- App container starts -->
+            <div class="app-container">
+
+                <!-- App hero header starts -->
+                <div class="app-hero-header d-flex align-items-center">
+
+                    <!-- Breadcrumb start -->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <i class="ri-home-3-line lh-1"></i>
+                            <a href="{{ asset('admin') }}">Admin</a>
+                        </li>
+                        <li class="breadcrumb-item text-secondary" aria-current="page">Default Layout</li>
+                    </ol>
+                    <!-- Breadcrumb end -->
+
+                    <!-- Sales stats start -->
+                    <div class="ms-auto d-lg-flex d-none flex-row">
+                        <div class="d-flex flex-row gap-1 day-selection">
+                            <button type="button" class="btn btn-sm rounded-5 btn-primary">A-z</button>
+                            <button type="button" class="btn btn-sm rounded-5 btn-white">Z-a</button>
+                        </div>
+                    </div>
+                    <!-- Sales stats end -->
+
+                </div>
+                <!-- App Hero header ends -->
+
+                <!-- App body starts -->
+                <div class="app-body">
+
+                    <!-- Row start -->
+                    <div class="row gx-3">
+                        <div class="col-sm-12">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">{% block app_title %}{% endblock %}</h5>
+
+                                    <div class="card-body">
+                                        <div class="table-outer">
+                                            <div class="table-responsive">
+                                                {% block table %}{% endblock %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row end -->
+
+                </div>
+                <!-- App body ends -->
+
+                <!-- App footer start -->
+                <div class="app-footer">
+                    <span>© Test task for Starlit Group 2026</span>
+                </div>
+                <!-- App footer end -->
+
+            </div>
+            <!-- App container ends -->
+
+        </div>
+        <!-- Main container end -->
+
+    </div>
+{% endblock %}
+
+<div class="auth-wrapper">
+
+    <!-- Form starts -->
+    <form action="index.html">
+
+        <div class="auth-box">
+            <h4 class="mb-4">Login to Starlit Group</h4>
+
+            <div class="mb-3">
+                <label class="form-label" for="email">Your email <span class="text-danger">*</span></label>
+                <input type="text" id="email" class="form-control" placeholder="Enter your email">
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" for="pwd">Your password <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="password" id="pwd" class="form-control" placeholder="Enter password">
+                    <button class="btn btn-light" type="button">
+                        <i class="ri-eye-off-line"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mb-3">
+                <a href="forgot-password.html" class="text-decoration-underline">Forgot Password?</a>
+            </div>
+
+            <div class="mb-3 d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="signup.html" class="btn btn-outline-primary">Not Registered? Signup</a>
+            </div>
+
+        </div>
+
+    </form>
+    <!-- Form ends -->
+
+</div>
+</body>
+</html>

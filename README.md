@@ -5,5 +5,5 @@
 - Pgsql >= 13
 - Composer 2.x
 
-Before you start, do not forget, to create local env file (.env.dev or .env.local) and putt all necessary env variable 
+Before you start, do not forget, to create local env file (.env.dev or .env.local) and populate all necessary env variable 
 for the project to successfully start.

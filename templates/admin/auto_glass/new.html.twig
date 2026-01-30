@@ -1,11 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}New AutoGlass{% endblock %}
 
-{% block body %}
+{% block table %}
     <h1>Create new AutoGlass</h1>
-
     {{ include('admin/auto_glass/_form.html.twig') }}
-
     <a href="{{ path('app_admin_auto_glass_index') }}">back to list</a>
 {% endblock %}

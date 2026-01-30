@@ -1,19 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
+
 
 {% block title %}AutoGlass index{% endblock %}
+{% block app_title %}Auto Glass index{% endblock %}
 
-{% block body %}
-    <h1>AutoGlass index</h1>
-
+{% block table %}
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Number</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Number</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for auto_glass in auto_glasses %}
@@ -23,8 +23,8 @@
                 <td>{{ auto_glass.type }}</td>
                 <td>{{ auto_glass.number }}</td>
                 <td>
-                    <a href="{{ path('app_admin_auto_glass_show', {'id': auto_glass.id}) }}">show</a>
-                    <a href="{{ path('app_admin_auto_glass_edit', {'id': auto_glass.id}) }}">edit</a>
+                    <a class="btn btn-light" href="{{ path('app_admin_auto_glass_show', {'id': auto_glass.id}) }}">show</a>
+                    <a class="btn btn-light" href="{{ path('app_admin_auto_glass_edit', {'id': auto_glass.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +34,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_admin_auto_glass_new') }}">Create new</a>
+    <a class="btn btn-primary mb-3" href="{{ path('app_admin_auto_glass_new') }}">Create new</a>
 {% endblock %}

@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}AutoGlass{% endblock %}
 
-{% block body %}
+{% block table %}
     <h1>AutoGlass</h1>
 
     <table class="table">
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_auto_glass_index') }}">back to list</a>
+    <a class="btn btn-light" href="{{ path('app_admin_auto_glass_index') }}">back to list</a>
 
-    <a href="{{ path('app_admin_auto_glass_edit', {'id': auto_glass.id}) }}">edit</a>
+    <a class="btn btn-light" href="{{ path('app_admin_auto_glass_edit', {'id': auto_glass.id}) }}">edit</a>
 
     {{ include('admin/auto_glass/_delete_form.html.twig') }}
 {% endblock %}

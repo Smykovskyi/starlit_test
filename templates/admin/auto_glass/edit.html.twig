@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Edit AutoGlass{% endblock %}
 
-{% block body %}
+{% block table %}
     <h1>Edit AutoGlass</h1>
 
     {{ include('admin/auto_glass/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_admin_auto_glass_index') }}">back to list</a>
+    <a class="btn btn-light" href="{{ path('app_admin_auto_glass_index') }}">back to list</a>
 
     {{ include('admin/auto_glass/_delete_form.html.twig') }}
 {% endblock %}

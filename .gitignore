@@ -12,3 +12,6 @@
 
 # IDEs
 /.idea/
+
+# Templates
+/doc/

@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}CarDoor index{% endblock %}
 
-{% block body %}
-    <h1>CarDoor index</h1>
+{% block title %}Car Door index{% endblock %}
+{% block app_title %}Car Door index{% endblock %}
 
+{% block table %}
     <table class="table">
         <thead>
             <tr>
@@ -21,8 +21,8 @@
                 <td>{{ car_door.model }}</td>
                 <td>{{ car_door.color }}</td>
                 <td>
-                    <a href="{{ path('app_admin_car_door_show', {'id': car_door.id}) }}">show</a>
-                    <a href="{{ path('app_admin_car_door_edit', {'id': car_door.id}) }}">edit</a>
+                    <a class="btn btn-light" href="{{ path('app_admin_car_door_show', {'id': car_door.id}) }}">show</a>
+                    <a class="btn btn-light" href="{{ path('app_admin_car_door_edit', {'id': car_door.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +32,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_admin_car_door_new') }}">Create new</a>
+    <a class="btn btn-primary mb-3" href="{{ path('app_admin_car_door_new') }}">Create new</a>
 {% endblock %}

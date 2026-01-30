@@ -1,0 +1,26 @@
+{# templates/form/custom_theme.html.twig #}
+{% extends 'form_div_layout.html.twig' %} {# Extend a built-in theme for default blocks #}
+
+{% block form_row %}
+    <div class="card-body">
+        <div class="form-label">
+            {{ form_label(form) }}
+        </div>
+        <div class="btn btn-sm mb-3">
+            {{ form_widget(form) }}
+        </div>
+        <div>
+            {{ form_errors(form) }}
+        </div>
+
+
+
+    </div>
+{% endblock %}
+
+{% block money_widget %}
+    <div class="input-group">
+        <span class="input-group-text">$</span>
+        {{ block('form_widget_simple') }} {# Reuses the basic input widget from the parent theme #}
+    </div>
+{% endblock %}
