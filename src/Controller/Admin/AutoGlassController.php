@@ -6,6 +6,7 @@ use App\Entity\AutoGlass;
 use App\Form\AutoGlassType;
 use App\Repository\AutoGlassRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AutoGlassController extends AbstractController
 {
     #[Route(name: 'app_admin_auto_glass_index', methods: ['GET'])]
-    public function index(AutoGlassRepository $autoGlassRepository): Response
-    {
+    public function index(
+        AutoGlassRepository $autoGlassRepository,
+        Request $request,
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $page = max($request->query->get('page', 1), 1);
+        $limit =  8;
+
+        $dql   = "SELECT a FROM App\Entity\AutoGlass a ORDER BY a.id DESC";
+        $query = $entityManager->createQuery($dql);
+        $autoGlasses = $paginator->paginate($query, $page, $limit);
+
         return $this->render('admin/auto_glass/index.html.twig', [
-            'auto_glasses' => $autoGlassRepository->findAll(),
+            'auto_glasses' => $autoGlasses,
         ]);
     }
 

@@ -6,6 +6,7 @@ use App\Entity\CarDoor;
 use App\Form\CarDoorType;
 use App\Repository\CarDoorRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class CarDoorController extends AbstractController
 {
     #[Route(name: 'app_admin_car_door_index', methods: ['GET'])]
-    public function index(CarDoorRepository $carDoorRepository): Response
-    {
+    public function index(
+        CarDoorRepository $carDoorRepository,
+        Request $request,
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $page = max($request->query->get('page', 1), 1);
+        $limit =  8;
+
+        $dql   = "SELECT a FROM App\Entity\CarDoor a ORDER BY a.id DESC";
+        $query = $entityManager->createQuery($dql);
+        $carDoors = $paginator->paginate($query, $page, $limit);
+
         return $this->render('admin/car_door/index.html.twig', [
-            'car_doors' => $carDoorRepository->findAll(),
+            'car_doors' => $carDoors,
         ]);
     }
 

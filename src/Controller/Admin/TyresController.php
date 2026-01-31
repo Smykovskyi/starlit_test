@@ -6,6 +6,7 @@ use App\Entity\Tyres;
 use App\Form\TyresType;
 use App\Repository\TyresRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TyresController extends AbstractController
 {
     #[Route(name: 'app_admin_tyres_index', methods: ['GET'])]
-    public function index(TyresRepository $tyresRepository): Response
-    {
+    public function index(
+        Request $request,
+        TyresRepository $tyresRepository,
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $page = max($request->query->get('page', 1), 1);
+        $limit =  8;
+
+        $dql   = "SELECT a FROM App\Entity\Tyres a ORDER BY a.id DESC";
+        $query = $entityManager->createQuery($dql);
+        $tyres = $paginator->paginate($query, $page, $limit);
+
         return $this->render('admin/tyres/index.html.twig', [
-            'tyres' => $tyresRepository->findAll(),
+            'tyres' => $tyres,
         ]);
     }
 

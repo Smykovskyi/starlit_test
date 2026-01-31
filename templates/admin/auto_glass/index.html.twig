@@ -34,5 +34,6 @@
         {% endfor %}
         </tbody>
     </table>
+    {{ knp_pagination_render(auto_glasses) }}
     <a class="btn btn-primary mb-3" href="{{ path('app_admin_auto_glass_new') }}">Create new</a>
 {% endblock %}
